@@ -1,30 +1,52 @@
 import { Button } from "@/components/ui/button";
-import { Brain, Menu } from "lucide-react";
+import { Brain, Menu, LogOut, User } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 import { toast } from "@/hooks/use-toast";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
 
   const handleLogin = () => {
+    navigate("/auth");
+  };
+
+  const handleSignOut = async () => {
+    await signOut();
     toast({
-      title: "Login Portal",
-      description: "Institutional login portal is currently being prepared. Contact us for early access!",
+      title: "Signed out",
+      description: "You've been successfully signed out.",
     });
   };
 
   const handleGetStarted = () => {
-    toast({
-      title: "Get Started with MindBridge",
-      description: "Let's connect! Please fill out our contact form to begin your journey.",
-    });
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    if (user) {
+      navigate("/dashboard");
+    } else {
+      navigate("/auth");
+    }
+  };
+
+  const handleLogoClick = () => {
+    navigate("/");
   };
 
   return (
     <header className="bg-card/95 backdrop-blur-sm border-b border-border sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <div className="flex items-center space-x-2">
+        <div 
+          className="flex items-center space-x-2 cursor-pointer hover-scale" 
+          onClick={handleLogoClick}
+        >
           <Brain className="h-8 w-8 text-primary" />
           <span className="text-xl font-bold gradient-text">MindBridge</span>
         </div>
@@ -45,8 +67,31 @@ const Header = () => {
         </nav>
 
         <div className="hidden md:flex items-center space-x-4">
-          <Button variant="ghost" onClick={handleLogin}>Login</Button>
-          <Button onClick={handleGetStarted}>Get Started</Button>
+          {user ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="flex items-center space-x-2">
+                  <User className="h-4 w-4" />
+                  <span>Account</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => navigate("/dashboard")}>
+                  <User className="mr-2 h-4 w-4" />
+                  Dashboard
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={handleSignOut}>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Sign out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <>
+              <Button variant="ghost" onClick={handleLogin}>Login</Button>
+              <Button onClick={handleGetStarted}>Get Started</Button>
+            </>
+          )}
         </div>
 
         <Button
@@ -75,8 +120,23 @@ const Header = () => {
               Contact
             </a>
             <div className="flex flex-col space-y-2 pt-4">
-              <Button variant="ghost" onClick={handleLogin}>Login</Button>
-              <Button onClick={handleGetStarted}>Get Started</Button>
+              {user ? (
+                <>
+                  <Button variant="ghost" onClick={() => navigate("/dashboard")}>
+                    <User className="mr-2 h-4 w-4" />
+                    Dashboard
+                  </Button>
+                  <Button variant="ghost" onClick={handleSignOut}>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Sign out
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button variant="ghost" onClick={handleLogin}>Login</Button>
+                  <Button onClick={handleGetStarted}>Get Started</Button>
+                </>
+              )}
             </div>
           </nav>
         </div>
