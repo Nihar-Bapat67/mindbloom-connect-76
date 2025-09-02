@@ -22,13 +22,22 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
+      {/* Background Video */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src={heroImage} 
-          alt="Students supporting each other in mental wellness"
-          className="w-full h-full object-cover opacity-20"
-        />
+        <video 
+          autoPlay 
+          muted 
+          loop 
+          playsInline
+          className="w-full h-full object-cover opacity-30"
+        >
+          <source src="https://cdn.pixabay.com/video/2022/12/03/141606-777807764_large.mp4" type="video/mp4" />
+          <img 
+            src={heroImage} 
+            alt="Students supporting each other in mental wellness"
+            className="w-full h-full object-cover"
+          />
+        </video>
         <div className="absolute inset-0 bg-gradient-subtle" />
       </div>
 

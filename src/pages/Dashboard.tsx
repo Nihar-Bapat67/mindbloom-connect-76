@@ -181,20 +181,47 @@ const Dashboard = () => {
           </Card>
         </div>
 
+        {/* Wellness Insights */}
+        <Card className="p-6 mt-8">
+          <h2 className="text-xl font-semibold mb-4">Wellness Insights</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <div className="text-center p-4 bg-muted/50 rounded-lg">
+              <div className="text-2xl font-bold text-primary">73%</div>
+              <div className="text-sm text-muted-foreground">Positive Mood</div>
+            </div>
+            <div className="text-center p-4 bg-muted/50 rounded-lg">
+              <div className="text-2xl font-bold text-secondary">2.3h</div>
+              <div className="text-sm text-muted-foreground">Avg Session</div>
+            </div>
+            <div className="text-center p-4 bg-muted/50 rounded-lg">
+              <div className="text-2xl font-bold text-wellness">92%</div>
+              <div className="text-sm text-muted-foreground">Satisfaction</div>
+            </div>
+            <div className="text-center p-4 bg-muted/50 rounded-lg">
+              <div className="text-2xl font-bold text-support">15%</div>
+              <div className="text-sm text-muted-foreground">Improvement</div>
+            </div>
+          </div>
+          <div className="text-center">
+            <Button className="mr-2">Generate Report</Button>
+            <Button variant="outline">Export Data</Button>
+          </div>
+        </Card>
+
         {/* Quick Actions */}
         <Card className="p-6 mt-8">
           <h2 className="text-xl font-semibold mb-4">Quick Actions</h2>
           <div className="grid md:grid-cols-3 gap-4">
-            <Button className="h-20 flex flex-col space-y-2">
-              <Brain className="h-6 w-6" />
+            <Button className="h-20 flex flex-col space-y-2 group">
+              <Brain className="h-6 w-6 group-hover:scale-110 transition-transform" />
               <span>AI Chat Support</span>
             </Button>
-            <Button variant="outline" className="h-20 flex flex-col space-y-2">
-              <Calendar className="h-6 w-6" />
+            <Button variant="outline" className="h-20 flex flex-col space-y-2 group">
+              <Calendar className="h-6 w-6 group-hover:scale-110 transition-transform" />
               <span>Schedule Session</span>
             </Button>
-            <Button variant="outline" className="h-20 flex flex-col space-y-2">
-              <BarChart3 className="h-6 w-6" />
+            <Button variant="outline" className="h-20 flex flex-col space-y-2 group">
+              <BarChart3 className="h-6 w-6 group-hover:scale-110 transition-transform" />
               <span>View Analytics</span>
             </Button>
           </div>
