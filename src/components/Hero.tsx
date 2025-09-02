@@ -1,8 +1,25 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, Users, Brain } from "lucide-react";
 import heroImage from "@/assets/hero-wellness.jpg";
+import { toast } from "@/hooks/use-toast";
 
 const Hero = () => {
+  const handleStartJourney = () => {
+    toast({
+      title: "Welcome to MindBridge!",
+      description: "Our team will help you get started. Please fill out the contact form below.",
+    });
+    // Scroll to contact section
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleWatchDemo = () => {
+    toast({
+      title: "Demo Coming Soon",
+      description: "Our demo video is being prepared. We'll notify you when it's available!",
+    });
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -29,11 +46,11 @@ const Hero = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Button size="lg" className="group">
+              <Button size="lg" className="group" onClick={handleStartJourney}>
                 Start Your Journey
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button size="lg" variant="outline">
+              <Button size="lg" variant="outline" onClick={handleWatchDemo}>
                 Watch Demo
               </Button>
             </div>

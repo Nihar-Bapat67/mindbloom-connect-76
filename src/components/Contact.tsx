@@ -15,6 +15,7 @@ import {
   Globe
 } from "lucide-react";
 import { useState } from "react";
+import { toast } from "@/hooks/use-toast";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -59,8 +60,32 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", formData);
+    
+    // Validate required fields
+    if (!formData.name || !formData.email || !formData.institution) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Simulate form submission
+    toast({
+      title: "Demo Request Submitted!",
+      description: "We'll contact you within 24 hours to schedule your personalized demo.",
+    });
+
+    // Reset form
+    setFormData({
+      name: "",
+      email: "",
+      institution: "",
+      role: "",
+      studentCount: "",
+      message: ""
+    });
   };
 
   return (

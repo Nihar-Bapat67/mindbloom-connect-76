@@ -1,8 +1,18 @@
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Quote, Star } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
 
 const Testimonials = () => {
+  const handleStartImplementation = () => {
+    toast({
+      title: "Ready to Start Implementation?",
+      description: "Great! Let's connect you with our implementation team.",
+    });
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   const testimonials = [
     {
       name: "Dr. Priya Sharma",
@@ -110,9 +120,9 @@ const Testimonials = () => {
               <div className="text-sm opacity-90">Average Response Time</div>
             </div>
           </div>
-          <button className="bg-white text-primary font-semibold px-8 py-3 rounded-lg hover:bg-white/90 transition-colors pulse-glow">
+          <Button className="bg-background text-foreground font-semibold hover:bg-background/90 pulse-glow" onClick={handleStartImplementation}>
             Start Your Implementation
-          </button>
+          </Button>
         </div>
       </div>
     </section>

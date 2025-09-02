@@ -1,6 +1,23 @@
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { toast } from "@/hooks/use-toast";
 
 const Stats = () => {
+  const handleRequestDemo = () => {
+    toast({
+      title: "Demo Request",
+      description: "Redirecting you to our contact form to schedule your demo.",
+    });
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleViewCaseStudies = () => {
+    toast({
+      title: "Case Studies Coming Soon",
+      description: "We're preparing detailed case studies. They'll be available in our resource center soon!",
+    });
+  };
+
   const statistics = [
     {
       number: "73%",
@@ -62,12 +79,12 @@ const Stats = () => {
             culturally-sensitive mental health support for their students.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-primary font-semibold px-8 py-3 rounded-lg hover:bg-white/90 transition-colors">
+            <Button className="bg-background text-foreground font-semibold hover:bg-background/90" onClick={handleRequestDemo}>
               Request Demo
-            </button>
-            <button className="border-2 border-white text-white font-semibold px-8 py-3 rounded-lg hover:bg-white/10 transition-colors">
+            </Button>
+            <Button variant="outline" className="border-2 border-background text-background hover:bg-background/10" onClick={handleViewCaseStudies}>
               View Case Studies
-            </button>
+            </Button>
           </div>
         </div>
       </div>

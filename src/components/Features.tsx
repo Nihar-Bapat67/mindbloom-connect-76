@@ -80,8 +80,8 @@ const Features = () => {
             const Icon = feature.icon;
             return (
               <Card key={index} className="p-6 hover:shadow-lg transition-shadow animate-slide-up">
-                <div className={`bg-${feature.color}/10 rounded-full p-3 w-fit mb-4`}>
-                  <Icon className={`h-6 w-6 text-${feature.color}`} />
+                <div className="bg-primary/10 rounded-full p-3 w-fit mb-4">
+                  <Icon className="h-6 w-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
                 <p className="text-muted-foreground">{feature.description}</p>

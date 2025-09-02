@@ -10,8 +10,17 @@ import {
   Phone,
   ArrowRight
 } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
 
 const Implementation = () => {
+  const handleScheduleConsultation = () => {
+    toast({
+      title: "Implementation Consultation",
+      description: "Let's schedule your consultation! Please provide your details in the contact form.",
+    });
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   const phases = [
     {
       phase: "Phase 1",
@@ -108,12 +117,12 @@ const Implementation = () => {
                 style={{ animationDelay: `${index * 0.15}s` }}
               >
                 <div className="flex items-start space-x-4">
-                  <div className={`bg-${phase.color}/10 rounded-full p-3 flex-shrink-0`}>
-                    <Icon className={`h-6 w-6 text-${phase.color}`} />
+                  <div className="bg-primary/10 rounded-full p-3 flex-shrink-0">
+                    <Icon className="h-6 w-6 text-primary" />
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center justify-between mb-2">
-                      <span className={`text-sm font-medium text-${phase.color} uppercase tracking-wide`}>
+                      <span className="text-sm font-medium text-primary uppercase tracking-wide">
                         {phase.phase}
                       </span>
                       <span className="text-sm text-muted-foreground bg-muted px-3 py-1 rounded-full">
@@ -156,7 +165,7 @@ const Implementation = () => {
           </div>
 
           <div className="text-center">
-            <Button size="lg" className="group">
+            <Button size="lg" className="group" onClick={handleScheduleConsultation}>
               Schedule Implementation Consultation
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>

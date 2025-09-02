@@ -1,9 +1,25 @@
 import { Button } from "@/components/ui/button";
 import { Brain, Menu } from "lucide-react";
 import { useState } from "react";
+import { toast } from "@/hooks/use-toast";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleLogin = () => {
+    toast({
+      title: "Login Portal",
+      description: "Institutional login portal is currently being prepared. Contact us for early access!",
+    });
+  };
+
+  const handleGetStarted = () => {
+    toast({
+      title: "Get Started with MindBridge",
+      description: "Let's connect! Please fill out our contact form to begin your journey.",
+    });
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <header className="bg-card/95 backdrop-blur-sm border-b border-border sticky top-0 z-50">
@@ -14,14 +30,14 @@ const Header = () => {
         </div>
         
         <nav className="hidden md:flex items-center space-x-8">
+          <a href="/about" className="story-link text-muted-foreground hover:text-primary transition-colors">
+            About
+          </a>
+          <a href="/resources" className="story-link text-muted-foreground hover:text-primary transition-colors">
+            Resources
+          </a>
           <a href="#features" className="story-link text-muted-foreground hover:text-primary transition-colors">
             Features
-          </a>
-          <a href="#testimonials" className="story-link text-muted-foreground hover:text-primary transition-colors">
-            Testimonials
-          </a>
-          <a href="#implementation" className="story-link text-muted-foreground hover:text-primary transition-colors">
-            Implementation
           </a>
           <a href="#contact" className="story-link text-muted-foreground hover:text-primary transition-colors">
             Contact
@@ -29,8 +45,8 @@ const Header = () => {
         </nav>
 
         <div className="hidden md:flex items-center space-x-4">
-          <Button variant="ghost">Login</Button>
-          <Button>Get Started</Button>
+          <Button variant="ghost" onClick={handleLogin}>Login</Button>
+          <Button onClick={handleGetStarted}>Get Started</Button>
         </div>
 
         <Button
@@ -46,21 +62,21 @@ const Header = () => {
       {isMenuOpen && (
         <div className="md:hidden bg-card border-t border-border">
           <nav className="container mx-auto px-4 py-4 flex flex-col space-y-4">
+            <a href="/about" className="story-link text-muted-foreground hover:text-primary transition-colors">
+              About
+            </a>
+            <a href="/resources" className="story-link text-muted-foreground hover:text-primary transition-colors">
+              Resources
+            </a>
             <a href="#features" className="story-link text-muted-foreground hover:text-primary transition-colors">
               Features
-            </a>
-            <a href="#testimonials" className="story-link text-muted-foreground hover:text-primary transition-colors">
-              Testimonials
-            </a>
-            <a href="#implementation" className="story-link text-muted-foreground hover:text-primary transition-colors">
-              Implementation
             </a>
             <a href="#contact" className="story-link text-muted-foreground hover:text-primary transition-colors">
               Contact
             </a>
             <div className="flex flex-col space-y-2 pt-4">
-              <Button variant="ghost">Login</Button>
-              <Button>Get Started</Button>
+              <Button variant="ghost" onClick={handleLogin}>Login</Button>
+              <Button onClick={handleGetStarted}>Get Started</Button>
             </div>
           </nav>
         </div>
